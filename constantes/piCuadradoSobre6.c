@@ -4,8 +4,11 @@ int main(int argc, char const *argv[])
 {
     int n, i;
     float fct=1.0;
-    printf("Cual es el numero de terminos? ");
-    scanf("%d", &n);
+    do
+    {
+        printf("Cual es el numero de terminos? ");
+        scanf("%d", &n);
+    } while (n<1);
     for (i = 1; i < n; i++)
     {
         // Realizar la suma de factores aumentando en uno el denominador y elevándolo al cuadrado

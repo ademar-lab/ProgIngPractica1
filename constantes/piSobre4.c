@@ -4,8 +4,11 @@ int main(int argc, char const *argv[])
 {
     int n, sg, i;
     float den, fct=1.0;
-    printf("Cual es el numero de terminos? ");
-    scanf("%d", &n);
+    do
+    {
+        printf("Cual es el numero de terminos? ");
+        scanf("%d", &n);
+    } while (n<1);
     for (i = 1, den = 1; i < n; i++)
     {
         // Generar signo negativo para los terminos nones y positivo para los pares

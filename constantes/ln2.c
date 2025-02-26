@@ -5,8 +5,13 @@ int main(int argc, char const *argv[])
 
     int n, sg, i;
     float fct=1.0;
-    printf("Cual es el numero de terminos? ");
-    scanf("%d", &n);
+    // Preguntar por el número de términos
+    do
+    {
+        printf("Cual es el numero de terminos? ");
+        scanf("%d", &n);
+    } while (n<1);
+    // Comenzar el cálculo de la serie
     for (i = 1; i < n; i++)
     {
         // Generar signo negativo para los terminos nones y positivo para los pares
