@@ -3,7 +3,7 @@
 int main(int argc, char const *argv[])
 {
     int n, i, sgn, exp = 1;
-    float x, senx, den=1.0, num=1.0;
+    float x, cosx = 1.0, den=1.0, num=1.0;
     // Preguntar por el número de términos
     do
     {
@@ -13,22 +13,21 @@ int main(int argc, char const *argv[])
     printf("Cual es el valor de x (numero de radianes para calcular la serie)? ");
     scanf("%f", &x);
 
-    senx = x;  
-    num = x;
+    num = 1.0;
 
-    printf("%f + \n", senx);
+    printf("%f + \n", cosx);
     // Comenzar el cálculo de la serie
     for (i = 0; i < n; i++)
     {
         sgn = (2*(i%2))-1;
         // Aumentar en dos el exponente
         num *= (x*x);
-        // Encontrar (2i+3)!
-        den *= ((2*i)+2)*((2*i)+3);
+        // Encontrar (2i+2)!
+        den *= ((2*i)+1)*((2*i)+2);
         printf("%d(%f/%f) + \n", sgn, num, den);
-        senx += sgn*(num/den);
+        cosx += sgn*(num/den);
     }
-    printf("\nsen(%f) = %f\n", x, senx);
+    printf("\ncos(%f) = %f\n", x, cosx);
    
     return 0;
 }
