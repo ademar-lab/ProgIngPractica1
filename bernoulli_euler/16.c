@@ -3,7 +3,7 @@
 int main(int argc, char const *argv[])
 {
     int k, n, i, j;
-    float den, num=1.0, Bi, i_factorial = 1.0, coef_bin_num, finalnum, finalden;
+    float den, num=1.0, Bi, i_factorial, coef_bin_num;
     // Preguntar por el número de términos
     do
     {
@@ -11,56 +11,35 @@ int main(int argc, char const *argv[])
         scanf("%d", &k);
     } while (k<0);
 
+    // Lista de todos los números de bernoulli, desde B0 hasta Bk
     float bList[k];
+    // B0 = 1
     bList[0] = 1;
 
     // Comenzar el cálculo de la serie
     for (j = 1; j <= k; j++)
     {
-        printf("B_%d\n", j);
-        coef_bin_num = k;
+        printf("\nB_%d\n", j);
+        // Se establece a 0 para que los números de bernoulli previos no afecten a los próximos
         Bi = 0.0;
+        coef_bin_num = 0.0;
+        i_factorial = 0.0;
         for (i = 0; i < j; i++)
         {
-            coef_bin_num = (i ? coef_bin_num*(k-i+1):1);
-            // printf("numerador coef: %f\n", coef_bin_num);
-            // printf("iteracion %d\n", i);
-            // Aumentar uno el exponente y multiplicando el divisor anterior por el exponente actual
-            i_factorial *= (i ? i: 1);
+            // El algoritmo se comporta diferente en i=0 debido a que 0! = 1 
+            coef_bin_num = coef_bin_num ? coef_bin_num*(j-i+1) : 1;
+            // Solo cambiar el numerador del coeficiente binomial si i =! 0
+            i_factorial = (i ? i_factorial*i: 1);
             den = j+1-i;
             // Coeficiente binomial -> k!/(i!(K-i)!) = k*(k-1)*...*(k-i+2)*(k-i+1) / i!
             // Cuando i = 0, coeficiente binomial = 1
-            //                                          El Bi anterior se tiene que tomar con signo negativo
-            finalnum = coef_bin_num/i_factorial;
-            finalden = bList[i]/den;
-            Bi += (finalnum*finalden);
-            printf("(%f/%f)*(%f/%f)\n", coef_bin_num, i_factorial, bList[i], den);
-            printf("%f*%f\n", finalnum, finalden);
-            printf("B%d: %f\n", i, Bi);
+            // El Bi anterior se tiene que tomar con signo negativo
+            Bi += (coef_bin_num/i_factorial)*(bList[i]/den);
         }
-        printf("B%d: %f\n", j-1, Bi);
-        printf("j: %d\n", j);
         Bi *= -1.0;
         // Para el primer ciclo se calculará B1, que se usará en B2
         bList[j] = Bi;
-        printf("\nB(%d) = %f\n", j, bList[j]);
+        printf("%f", bList[j]);
     }    
-    // // Comenzar el cálculo de la serie
-    // for (i = 0; i < k; i++)
-    // {
-    //     coef_bin_num *= k-i;
-    //     printf("numerador coef: %f\n", coef_bin_num);
-    //     printf("iteracion %d\n", i);
-    //     // Aumentar uno el exponente y multiplicando el divisor anterior por el exponente actual
-    //     i_factorial *= (i ? i: 1);
-    //     den = k+1-i;
-    //     // Coeficiente binomial -> k!/(i!(K-i)!) = k*(k-1)*...*(k-i+2)*(k-i+1) / i!
-    //     // Cuando i = 0, coeficiente binomial = 1
-    //     //                                          El Bi anterior se tiene que tomar con signo negativo
-    //     Bi += (i ? coef_bin_num/i_factorial: 1)*((i?-1*Bi:1)/den);
-    //     printf("(%f/%f)*(%f/%f)\n", i?coef_bin_num:k, i?i_factorial:k, Bi, den);
-
-    //     printf("B%d: %f\n", i, Bi);
-    // }   
     return 0;
 }
