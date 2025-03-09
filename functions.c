@@ -35,3 +35,21 @@ float calcularBernoulli(int k) {
 
     return bList[k];
 }
+
+int generarTablaVariables(float x, float (*funcion)(float, int), float valor_exacto){
+    int i, n=1;
+    float valor_aproximado, error_relativo;
+    // 8 renglones de la tabla
+    for (i = 1; i < 9; i++)
+    {
+        // Se aumenta en uno el exponente de 2^n
+        n *= 2;
+        valor_aproximado = funcion(x, n);
+        error_relativo = (fabs(valor_aproximado-valor_exacto)/fabs(valor_exacto))*100;
+        printf("\nn = %d\n", n);
+        printf("Valor aproximado = %f\n", valor_aproximado);
+        printf("Error relativo = %f\n", error_relativo);
+    }
+
+    return 0;
+}

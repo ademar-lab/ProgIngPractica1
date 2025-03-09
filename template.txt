@@ -1,0 +1,18 @@
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textit{n} & \textit{x} & Valor Aproximado & Error Relativo \\ 
+        \hline
+        $2^1 = 2$   & $x_1$ & $f_2$   & $\epsilon_2$   \\ 
+        $2^2 = 4$   & $x_1$ & $f_4$   & $\epsilon_4$   \\ 
+        $2^3 = 8$   & $x_1$ & $f_8$   & $\epsilon_8$   \\ 
+        $2^4 = 16$  & $x_1$ & $f_16$  & $\epsilon_16$  \\ 
+        $2^5 = 32$  & $x_1$ & $f_32$  & $\epsilon_32$  \\ 
+        $2^6 = 64$  & $x_1$ & $f_64$  & $\epsilon_64$  \\ 
+        $2^7 = 128$ & $x_1$ & $f_128$ & $\epsilon_128$ \\ 
+        $2^8 = 256$ & $x_1$ & $f_256$ & $\epsilon_256$ \\ 
+        \hline
+    \end{tabular}
+\end{table}
