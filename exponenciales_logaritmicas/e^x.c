@@ -1,17 +1,11 @@
 #include <stdio.h>
+#include <math.h>
 
-int main(int argc, char const *argv[])
-{
-    int n, i;
-    float x, den=1.0, num=1.0, fct=1.0;
-    // Preguntar por el número de términos
-    do
-    {
-        printf("Cual es el numero de terminos? ");
-        scanf("%d", &n);
-    } while (n<1);
-    printf("Cual es el valor de x?");
-    scanf("%f", &x);
+#include "../functions.c"
+
+float funcion(float x, int n) {
+    int i;
+    float den=1.0, num=1.0, fct=1.0;
 
     // Comenzar el cálculo de la serie
     for (i = 1; i < n; i++)
@@ -20,9 +14,22 @@ int main(int argc, char const *argv[])
         num *= x;
         den *= i;
         fct += num/den;
-        //printf("%f/%f\n", num, den);
     }
-    printf("\ne^(%f) = %f\n", x, fct);
    
+    return fct;
+}
+
+int main(int argc, char const *argv[])
+{
+    int i;
+    float x, valor_verdadero;
+
+    printf("Cual es el valor de x?");
+    scanf("%f", &x);
+
+    valor_verdadero = expf(x);
+
+    generarTablaVariables(x, funcion, valor_verdadero);
+
     return 0;
 }

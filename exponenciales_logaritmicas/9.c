@@ -2,8 +2,6 @@
 #include <math.h>
 #include "../functions.c"
 
-#define E 2.718281828459045
-
 float funcion(float x, int n){
     int i;
     float den=1.0, num=1.0, fct=0.0;
@@ -28,8 +26,7 @@ int main(int argc, char const *argv[])
     printf("Cual es el valor de x?");
     scanf("%f", &x);
     
-    // Solo es valido cuando x == 2
-    valor_verdadero = (x+(x*x))*(E*E);
+    valor_verdadero = (x+(x*x))*exp(x);
     printf("Valor verdadero = %f\n", valor_verdadero);
 
     generarTablaVariables(x, funcion, valor_verdadero);
