@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 float calcularBernoulli(int k) {
     int i, j;

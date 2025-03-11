@@ -1,20 +1,25 @@
 #include <stdio.h>
+#include "../functions.c"
 
-int main(int argc, char const *argv[])
-{
-    int n, i;
+float funcion(float x, int n){
+    int i;
     float fct=1.0;
-    do
-    {
-        printf("Cual es el numero de terminos? ");
-        scanf("%d", &n);
-    } while (n<1);
+    
+    // Comenzar el cálculo de la serie
     for (i = 1; i < n; i++)
     {
         // Realizar la suma de factores aumentando en uno el denominador y elevándolo al cuadrado
         fct +=  1.0/((i+1)*(i+1));
     }
-    printf("\nln(2) = %f\n", fct);
    
+    return fct;
+}
+
+int main(int argc, char const *argv[])
+{
+    float valor_verdadero = 1.644934;
+    
+    generarTablaVariables(1.64, funcion, valor_verdadero);
+
     return 0;
 }

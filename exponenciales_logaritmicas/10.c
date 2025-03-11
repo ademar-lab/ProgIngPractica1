@@ -23,12 +23,15 @@ float funcion(float x, int n){
 int main(int argc, char const *argv[])
 {
     float x, valor_verdadero;
+
     // Preguntar por el número de términos
     printf("Cual es el valor de x?");
     scanf("%f", &x);
+    
     // Solo es valido cuando x == 2
     valor_verdadero = (x+(x*x))*(E*E);
     printf("Valor verdadero = %f\n", valor_verdadero);
+
     generarTablaVariables(x, funcion, valor_verdadero);
 
     return 0;
