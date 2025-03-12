@@ -15,6 +15,7 @@ float funcion(float x, int n)
         num *= x;
         den *= i;
         fct += i*num/den;
+        printf()
     }
    
     return fct;

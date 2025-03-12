@@ -2,6 +2,7 @@
 #include <math.h>
 
 float calcularBernoulli(int k) {
+    // Calcula el número de Bernoulli de k
     int i, j;
     float den, num=1.0, Bi, i_factorial, coef_bin_num;
 
@@ -38,6 +39,7 @@ float calcularBernoulli(int k) {
 }
 
 int generarTablaVariables(float x, float (*funcion)(float, int), float valor_exacto){
+    // Genera los valores de la tabla comparativa para un valor de x
     int i, n=1;
     float valor_aproximado, error_relativo;
     // 8 renglones de la tabla
@@ -47,10 +49,40 @@ int generarTablaVariables(float x, float (*funcion)(float, int), float valor_exa
         n *= 2;
         valor_aproximado = funcion(x, n);
         error_relativo = (fabs(valor_aproximado-valor_exacto)/fabs(valor_exacto))*100;
+        printf("\nx = %f", x);
         printf("\nn = %d\n", n);
         printf("Valor aproximado = %f\n", valor_aproximado);
         printf("Error relativo = %f\n", error_relativo);
     }
+
+    return 0;
+}
+
+int generarTablaBernoulli(float (*funcion)(int)){
+    // Genera los valores de la tabla de los números de bernoulli de 2,4,8,16,32,64,128 y 256
+    int i, n=1;
+    float valor_aproximado, error_relativo;
+    // 8 renglones de la tabla
+    for (i = 1; i < 9; i++)
+    {
+        // Se aumenta en uno el exponente de 2^n
+        n *= 2;
+        valor_aproximado = funcion(n);
+        printf("\nn = %d\n", n);
+        printf("Valor aproximado = %f\n", valor_aproximado);
+    }
+
+    return 0;
+}
+
+
+int generarTresTablas(float (*funcion)(float, int), float valores_exactos[3])
+{
+    // Genera los valores de las tablas para x=2, x=4 y x=6
+    int j;
+
+    // 3 valores de x (2, 4, 6)
+    for (j = 1; j <= 3; j++) generarTablaVariables(j*2, funcion, valores_exactos[j-1]);
 
     return 0;
 }

@@ -1,15 +1,11 @@
 #include <stdio.h>
+#include "../functions.c"
 
-int main(int argc, char const *argv[])
+float funcion(int k)
 {
-    int k, n, i, j;
+    int i, j;
     float den, num=1.0, Bi, i_factorial, coef_bin_num;
-    // Preguntar por el número de términos
-    do
-    {
-        printf("Cual es el valor de k?");
-        scanf("%d", &k);
-    } while (k<0);
+    
 
     // Lista de todos los números de bernoulli, desde B0 hasta Bk
     float bList[k];
@@ -19,7 +15,6 @@ int main(int argc, char const *argv[])
     // Comenzar el cálculo de la serie
     for (j = 1; j <= k; j++)
     {
-        printf("\nB_%d\n", j);
         // Se establece a 0 para que los números de bernoulli previos no afecten a los próximos
         Bi = 0.0;
         coef_bin_num = 0.0;
@@ -39,7 +34,13 @@ int main(int argc, char const *argv[])
         Bi *= -1.0;
         // Para el primer ciclo se calculará B1, que se usará en B2
         bList[j] = Bi;
-        printf("%f", bList[j]);
     }    
+
+    return bList[k];
+}
+
+int main(int argc, char const *argv[])
+{
+    generarTablaBernoulli(funcion);
     return 0;
 }

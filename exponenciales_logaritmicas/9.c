@@ -20,16 +20,19 @@ float funcion(float x, int n){
 
 int main(int argc, char const *argv[])
 {
-    float x, valor_verdadero;
+    float x, valores_verdaderos[3] = {1.0, 1.0, 1.0};
 
-    // Preguntar por el número de términos
-    printf("Cual es el valor de x?");
-    scanf("%f", &x);
+    // Crear una lista de valores verdaderos
+    for (int i = 1; i <= 3; i++) valores_verdaderos[i-1] *= ((2*i)+((2*i)*(2*i)))*exp(2*i);
     
-    valor_verdadero = (x+(x*x))*exp(x);
-    printf("Valor verdadero = %f\n", valor_verdadero);
+    printf("Valores verdaderos:\n");
+    for (int i = 0; i < 3; i++)
+    {
+        printf("%f\n", valores_verdaderos[i]);
+    }
+    
 
-    generarTablaVariables(x, funcion, valor_verdadero);
+    generarTresTablas(funcion, valores_verdaderos);
 
     return 0;
 }
