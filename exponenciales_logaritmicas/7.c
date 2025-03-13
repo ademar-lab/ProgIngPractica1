@@ -5,15 +5,14 @@
 
 float funcion(float x, int n) {
     int i;
-    float den=1.0, num=1.0, fct=1.0;
+    float den=1.0, term=1.0, fct=1.0;
 
     // Comenzar el cálculo de la serie
     for (i = 1; i < n; i++)
     {
         // Aumentar uno el exponente y multiplicando el divisor anterior por el exponente actual
-        num *= x;
-        den *= i;
-        fct += num/den;
+        term *= x/i;
+        fct += term;
     }
    
     return fct;
@@ -22,14 +21,15 @@ float funcion(float x, int n) {
 int main(int argc, char const *argv[])
 {
     int i;
-    float x, valor_verdadero;
+    float valores_verdaderos[3];
 
-    printf("Cual es el valor de x?");
-    scanf("%f", &x);
-
-    valor_verdadero = expf(x);
-
-    generarTablaVariables(x, funcion, valor_verdadero);
+    // Respuestas para 2, 4 y 6
+    for (i = 1; i <= 3; i++)
+    {
+        valores_verdaderos[i-1] = expf(2*i);
+    }
+    
+    generarTresTablas(funcion, valores_verdaderos);
 
     return 0;
 }
